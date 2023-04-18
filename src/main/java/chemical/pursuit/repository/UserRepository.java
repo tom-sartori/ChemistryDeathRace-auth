@@ -53,20 +53,25 @@ public class UserRepository implements PanacheMongoRepository<User> {
                         .build();
             }
             persist(user);
-            return Response.status(Response.Status.CREATED).entity(user).build();
+            return Response
+                    .status(Response.Status.CREATED)
+                    .entity(user)
+                    .build();
         }
     }
 
     public Response login(User user) {
         if (user.getEmail() == null || user.getPassword() == null) {
-            return Response.status(Response.Status.UNAUTHORIZED)
+            return Response
+                    .status(Response.Status.UNAUTHORIZED)
                     .entity("Bad credentials. ")
                     .build();
         }
         else {
             User supposedUser = findByEmail(user.getEmail());
             if (supposedUser == null) {
-                return Response.status(Response.Status.UNAUTHORIZED)
+                return Response
+                        .status(Response.Status.UNAUTHORIZED)
                         .entity("Bad credentials. ")
                         .build();
             }
