@@ -3,7 +3,6 @@ package chemical.pursuit.resource;
 import chemical.pursuit.collection.user.User;
 import chemical.pursuit.constant.Paths;
 import chemical.pursuit.repository.UserRepository;
-import org.bson.types.ObjectId;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -42,6 +41,17 @@ public class UserResource {
         return Response
                 .status(Response.Status.OK)
                 .entity(userRepository.listAll())
+                .build();
+    }
+
+    @GET
+    @Path(Paths.ENABLE)
+    @Consumes(MediaType.MEDIA_TYPE_WILDCARD)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response enable() {
+        return Response
+                .status(Response.Status.OK)
+                .entity("{\"enable\": \"API enabled\"}")
                 .build();
     }
 }

@@ -2,9 +2,9 @@ package chemical.pursuit.repository;
 
 import chemical.pursuit.collection.user.User;
 import chemical.pursuit.constant.Roles;
+import chemical.pursuit.service.AESCryptService;
 import chemical.pursuit.service.JwtService;
 import io.quarkus.mongodb.panache.PanacheMongoRepository;
-import org.mindrot.jbcrypt.BCrypt;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -17,6 +17,9 @@ import java.util.Set;
 public class UserRepository implements PanacheMongoRepository<User> {
     @Inject
     JwtService jwtService;
+
+    @Inject
+    AESCryptService aesCryptService;
 
     public User findByEmail(String email) {
         return find("email", email).firstResult();
@@ -41,7 +44,14 @@ public class UserRepository implements PanacheMongoRepository<User> {
         else {
             user.setId(null);
             user.setAdmin(false);
-            user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(15)));
+            try {
+                user.setPassword(aesCryptService.encrypt(user.getPassword()));
+            } catch (Exception e) {
+                return Response
+                        .status(Response.Status.INTERNAL_SERVER_ERROR)
+                        .entity("Error encrypting password. ")
+                        .build();
+            }
             persist(user);
             return Response.status(Response.Status.CREATED).entity(user).build();
         }
@@ -61,22 +71,30 @@ public class UserRepository implements PanacheMongoRepository<User> {
                         .build();
             }
             else {
-                if (BCrypt.checkpw(user.getPassword(), supposedUser.getPassword())) {
-                    Set<String> roles = new HashSet<>();
-                    if (supposedUser.isAdmin()) {
-                        roles.addAll(Arrays.asList(Roles.ADMIN, Roles.CONTRIBUTOR));
+                try {
+                    if (aesCryptService.decrypt(supposedUser.getPassword()).equals(user.getPassword())) {
+                        Set<String> roles = new HashSet<>();
+                        if (supposedUser.isAdmin()) {
+                            roles.addAll(Arrays.asList(Roles.ADMIN, Roles.CONTRIBUTOR));
+                        }
+                        else {
+                            roles.add(Roles.CONTRIBUTOR);
+                        }
+                        return Response
+                                .status(Response.Status.OK)
+                                .entity("{ \"token\": \"" + jwtService.generateJwt(roles) + "\" }")
+                                .build();
                     }
                     else {
-                        roles.add(Roles.CONTRIBUTOR);
+                        return Response
+                                .status(Response.Status.UNAUTHORIZED)
+                                .entity("Bad credentials. ")
+                                .build();
                     }
+                } catch (Exception e) {
                     return Response
-                            .status(Response.Status.OK)
-                            .entity("{ \"token\": \"" + jwtService.generateJwt(roles) + "\" }")
-                            .build();
-                }
-                else {
-                    return Response.status(Response.Status.UNAUTHORIZED)
-                            .entity("Bad credentials. ")
+                            .status(Response.Status.INTERNAL_SERVER_ERROR)
+                            .entity("Error decrypting password. ")
                             .build();
                 }
             }
