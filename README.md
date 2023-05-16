@@ -1,8 +1,26 @@
 # chemistrydeathrace-auth
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+## Description
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+ChemistryDeathRace is a school project made at [Polytech](https://www.polytech.umontpellier.fr/), Montpellier, France, by [Romain Frezier](https://github.com/romainfrezier) and [Tom Sartori](https://github.com/tom-sartori) for [ENSCM](https://www.enscm.fr/en/).
+
+This project is the authentication API of the ChemistryDeathRace project. It uses [Quarkus](https://quarkus.io), the Supersonic Subatomic Java Framework.
+
+<a target="_blank" href="https://github.com/tom-sartori/ChemistryDeathRace-ui">
+  <img alt="github link" src="https://img.shields.io/badge/Chemistry Death Race-UI-green?style=for-the-badge&logo=github">
+</a>
+<br>
+<a target="_blank" href="https://github.com/tom-sartori/ChemistryDeathRace-adm">
+  <img alt="github link" src="https://img.shields.io/badge/Chemistry Death Race-ADM-green?style=for-the-badge&logo=github">
+</a>
+<br>
+<a target="_blank" href="https://github.com/tom-sartori/ChemistryDeathRace-api">
+  <img alt="github link" src="https://img.shields.io/badge/Chemistry Death Race-API-green?style=for-the-badge&logo=github">
+</a> 
+<br>
+<a target="_blank" href="https://github.com/tom-sartori/ChemistryDeathRace-auth">
+  <img alt="github link" src="https://img.shields.io/badge/Chemistry Death Race-AUTH-green?style=for-the-badge&logo=github">
+</a>
 
 ## Running the application in dev mode
 
