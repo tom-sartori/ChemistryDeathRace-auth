@@ -1,8 +1,8 @@
-package chemical.pursuit.resource;
+package chemistry.death.race.resource;
 
-import chemical.pursuit.collection.user.User;
-import chemical.pursuit.constant.Paths;
-import chemical.pursuit.repository.UserRepository;
+import chemistry.death.race.collection.user.User;
+import chemistry.death.race.constant.Paths;
+import chemistry.death.race.repository.UserRepository;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

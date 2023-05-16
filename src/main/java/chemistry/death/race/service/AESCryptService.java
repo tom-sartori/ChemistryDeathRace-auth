@@ -1,4 +1,4 @@
-package chemical.pursuit.service;
+package chemistry.death.race.service;
 
 import com.google.common.io.Resources;
 

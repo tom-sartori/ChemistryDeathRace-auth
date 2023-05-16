@@ -1,4 +1,4 @@
-package chemical.pursuit.service;
+package chemistry.death.race.service;
 
 import io.smallrye.jwt.build.Jwt;
 
@@ -11,8 +11,8 @@ public class JwtService {
 
     public String generateJwt(Set<String> roles) {
         return Jwt
-                .issuer("ChemicalPursuit-jwt")
-                .subject("ChemicalPursuit-app")
+                .issuer("ChemistryDeathRace-jwt")
+                .subject("ChemistryDeathRace-app")
                 .groups(roles)
                 .expiresAt(TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()) + (60 * 60 * 24))
                 .sign();

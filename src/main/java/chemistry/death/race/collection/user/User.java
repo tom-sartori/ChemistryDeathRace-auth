@@ -1,6 +1,6 @@
-package chemical.pursuit.collection.user;
+package chemistry.death.race.collection.user;
 
-import chemical.pursuit.constant.CollectionNames;
+import chemistry.death.race.constant.CollectionNames;
 import io.quarkus.mongodb.panache.common.MongoEntity;
 import org.bson.types.ObjectId;
 

@@ -1,4 +1,4 @@
-package chemical.pursuit.constant;
+package chemistry.death.race.constant;
 
 public final class Roles {
 

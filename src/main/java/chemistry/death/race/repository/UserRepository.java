@@ -1,9 +1,9 @@
-package chemical.pursuit.repository;
+package chemistry.death.race.repository;
 
-import chemical.pursuit.collection.user.User;
-import chemical.pursuit.constant.Roles;
-import chemical.pursuit.service.AESCryptService;
-import chemical.pursuit.service.JwtService;
+import chemistry.death.race.collection.user.User;
+import chemistry.death.race.constant.Roles;
+import chemistry.death.race.service.AESCryptService;
+import chemistry.death.race.service.JwtService;
 import io.quarkus.mongodb.panache.PanacheMongoRepository;
 
 import javax.enterprise.context.ApplicationScoped;

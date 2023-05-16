@@ -1,4 +1,4 @@
-package chemical.pursuit;
+package chemistry.death.race;
 
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
