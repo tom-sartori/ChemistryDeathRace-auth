@@ -1,4 +1,4 @@
-package exception;
+package chemistry.death.race.exception;
 
 import io.quarkus.logging.Log;
 
