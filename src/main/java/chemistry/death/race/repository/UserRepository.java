@@ -15,16 +15,29 @@ import java.util.Set;
 
 @ApplicationScoped
 public class UserRepository implements PanacheMongoRepository<User> {
+
     @Inject
     JwtService jwtService;
 
     @Inject
     AESCryptService aesCryptService;
 
+    /**
+     * Find user by email.
+     *
+     * @param email the email to search for.
+     * @return the user if found, not found otherwise.
+     */
     public User findByEmail(String email) {
         return find("email", email).firstResult();
     }
 
+    /**
+     * Register a new user. The email and password must be provided.
+     *
+     * @param user the user to register. Values are encrypted.
+     * @return the response.
+     */
     public Response register(User user) {
         if (user.getEmail() == null) {
             return Response.status(Response.Status.BAD_REQUEST)
@@ -74,6 +87,12 @@ public class UserRepository implements PanacheMongoRepository<User> {
         }
     }
 
+    /**
+     * Login a user. The email and password must be provided.
+     *
+     * @param user the user to login.
+     * @return the response.
+     */
     public Response login(User user) {
         if (user.getEmail() == null || user.getPassword() == null) {
             return Response

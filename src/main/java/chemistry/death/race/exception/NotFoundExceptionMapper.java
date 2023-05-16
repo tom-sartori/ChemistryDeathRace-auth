@@ -9,6 +9,9 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 import java.util.Arrays;
 
+/**
+ * Exception mapper for {@link NotFoundException}.
+ */
 @Provider
 public class NotFoundExceptionMapper implements ExceptionMapper<NotFoundException> {
 

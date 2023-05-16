@@ -9,6 +9,12 @@ import java.util.concurrent.TimeUnit;
 @Singleton
 public class JwtService {
 
+    /**
+     * Generate a JWT token.
+     *
+     * @param roles the roles to include in the token.
+     * @return the generated token.
+     */
     public String generateJwt(Set<String> roles) {
         return Jwt
                 .issuer("ChemistryDeathRace-jwt")
